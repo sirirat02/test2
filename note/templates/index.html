@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookshelf</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f4f4f4;
+        }
+        h2 { margin-top: 0; }
+        form {
+            background: #fff;
+            padding: 15px;
+            width: 500px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0;
+        }
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+        table {
+            background: #fff;
+            border-collapse: collapse;
+            width: 700px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th { background: #eee; }
+        a { color: red; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<h2>📚 เพิ่มหนังสือ</h2>
+<form action="/add" method="post">
+    <input type="text" name="title" placeholder="ชื่อหนังสือ" required>
+    <input type="text" name="author" placeholder="ผู้เขียน">
+    <input type="text" name="category" placeholder="หมวดหมู่">
+    <input type="number" name="year" placeholder="ปีที่พิมพ์">
+    <button type="submit">เพิ่มหนังสือ</button>
+</form>
+
+<h2>📖 รายการหนังสือ</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>ชื่อ</th>
+        <th>ผู้เขียน</th>
+        <th>หมวด</th>
+        <th>ปี</th>
+        <th>ลบ</th>
+    </tr>
+    {% for b in books %}
+    <tr>
+        <td>{{ b.book_id }}</td>
+        <td>{{ b.title }}</td>
+        <td>{{ b.author }}</td>
+        <td>{{ b.category }}</td>
+        <td>{{ b.published_year }}</td>
+        <td>
+            <a href="/delete/{{ b.book_id }}" onclick="return confirm('ลบข้อมูลนี้?')">
+                ลบ
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
