@@ -9,4 +9,4 @@ def index():
 
 if __name__ == "__main__":
     print(">>> Flask Mock Web running on http://localhost:8080")
-    serve(app, host="0.0.0.0", port=8080)
+    serve(app, host="0.0.0.0", port=port)
